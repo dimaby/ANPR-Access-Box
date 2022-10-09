@@ -5,7 +5,19 @@ services:
   reverse-proxy:
     image: nginx:1.17.10
     container_name: reverse_proxy
+    depends_on:
+        - node_red
     volumes:
       - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 80:80
+
+# Node Red
+  node_red:
+    image: nodered/node-red
+    container_name: node_red
+    volumes:
+      - node_red_data:/data    
+    ports:
+      - 1880:1880
+    restart: on-failure
