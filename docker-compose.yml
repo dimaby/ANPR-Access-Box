@@ -14,10 +14,10 @@ services:
 
 # Node Red
   node_red:
-    image: nodered/node-red
+    image: nodered/node-red:latest
     container_name: node_red
     volumes:
-      - node_red_data:/data    
+      - ./data:/data
     ports:
       - 1880:1880
     restart: on-failure
