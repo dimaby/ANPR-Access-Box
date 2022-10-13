@@ -13,6 +13,7 @@ services:
       - ./reverse-proxy/headers.conf:/etc/nginx/headers.conf
     ports:
       - 80:80
+    restart: always
 
 # Node-Red
   node-red:
@@ -22,13 +23,12 @@ services:
       - ./node-red-data:/data
     ports:
       - 1880:1880
-    restart: on-failure
+    restart: always
 
 # Portainer
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
-    restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     volumes:
@@ -37,3 +37,4 @@ services:
       - ./portainer-data:/data
     ports:
       - 9000:9000
+    restart: always
