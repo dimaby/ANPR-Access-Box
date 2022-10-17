@@ -22,7 +22,6 @@ services:
     container_name: node-red
     volumes:
       - ./node-red-data:/data
-      - /sys:/sys
     ports:
       - 1880:1880
     restart: always
