@@ -17,6 +17,7 @@ services:
 
 # Node-Red
   node-red:
+    privileged: true
     image: nodered/node-red:latest
     container_name: node-red
     volumes:
