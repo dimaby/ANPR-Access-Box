@@ -7,6 +7,4 @@ RUN apk add -U shadow
 RUN usermod -a -G gpio node-red
 RUN touch /etc/udev/rules.d/99-com.rules
 RUN echo 'KERNEL=="gpio*", RUN="/bin/sh -c '\''chgrp -R gpio /sys/%p /sys/class/gpio && chmod -R g+w /sys/%p /sys/class/gpio/'\''"' >> /etc/udev/rules.d/99-com.rules
-RUN echo 72 > /sys/class/gpio/export
-RUN echo out > /sys/class/gpio/gpio72/direction
 USER node-red
