@@ -17,7 +17,7 @@ services:
 
 # Node-Red
   node-red:
-    privileged: true
+    #privileged: true
     image: my-red:latest
     container_name: node-red
     #devices:
