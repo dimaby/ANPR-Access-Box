@@ -26,7 +26,7 @@ services:
     volumes:
       - ./node-red-data:/data
       - /sys/class/gpio:/sys/class/gpio
-      #- /sys/devices/platform/soc/300b000.pinctrl/gpiochip0/:/sys/devices/platform/soc/300b000.pinctrl/gpiochip0/ 
+      - /sys/devices/platform/soc/300b000.pinctrl/gpiochip0/:/sys/devices/platform/soc/300b000.pinctrl/gpiochip0/ 
     ports:
       - 1880:1880
     restart: always
