@@ -20,6 +20,8 @@ services:
     privileged: true
     image: my-red:latest
     container_name: node-red
+    devices:
+      - "/dev/gpiomem:/dev/gpiomem"
     volumes:
       - ./node-red-data:/data
       - /sys/class/gpio:/sys/class/gpio
