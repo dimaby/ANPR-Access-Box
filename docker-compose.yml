@@ -18,7 +18,7 @@ services:
 # Node-Red
   node-red:
     #privileged: true
-    image: my-red:latest
+    image: opi-red:latest
     container_name: node-red
     #devices:
     #  - /dev/gpiomem:/dev/gpiomem
