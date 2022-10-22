@@ -50,6 +50,7 @@ services:
   motioneye:
     image: ccrisan/motioneye:master-armhf
     ports:
+      - "8081:8081"
       - "8765:8765"
     volumes:
       - /etc/localtime:/etc/localtime:ro
