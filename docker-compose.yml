@@ -44,3 +44,22 @@ services:
     ports:
       - 9000:9000
     restart: always
+
+# motioneye
+  motioneye:
+    image: ccrisan/motioneye:master-armhf
+    ports:
+      - "8081:8081"
+      - "8765:8765"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - etc_motioneye:/etc/motioneye
+      - var_lib_motioneye:/var/lib/motioneye
+    restart: unless-stopped
+    devices:
+      - /dev/video0:/dev/video0:/dev/video1:/dev/video0
+      - /dev/video1:/dev/video1:/dev/video1:/dev/video1
+
+volumes:
+  etc_motioneye:
+  var_lib_motioneye:
