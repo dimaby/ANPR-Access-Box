@@ -49,13 +49,14 @@ services:
 # motioneye
   motioneye:
     image: ccrisan/motioneye:master-armhf
+    container_name: motioneye
     ports:
       - "8081:8081"
       - "8765:8765"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - etc_motioneye:/etc/motioneye
-      - var_lib_motioneye:/var/lib/motioneye
+      - ./etc_motioneye:/etc/motioneye
+      - ./var_lib_motioneye:/var/lib/motioneye
     restart: unless-stopped
     devices:
       - /dev/video1:/dev/video1
