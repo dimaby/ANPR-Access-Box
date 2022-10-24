@@ -16,6 +16,7 @@ services:
       - 80:80
     restart: always
 
+
 # Node-Red
   node-red:
     #privileged: true
@@ -32,6 +33,7 @@ services:
       - 1880:1880
     restart: always
 
+
 # Portainer
   portainer:
     image: portainer/portainer-ce:latest
@@ -45,6 +47,18 @@ services:
     ports:
       - 9000:9000
     restart: always
+
+
+# oalprws
+# 1) http://oalprws:8080/v1/identify/plate
+# method POST, parametr: image (binary image to recognition)
+  oalprws:
+    image: dimaby/oalprws:latest
+    container_name: oalprws
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
 
 # motioneye
   motioneye:
