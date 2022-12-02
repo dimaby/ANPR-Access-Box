@@ -57,7 +57,7 @@ services:
     container_name: oalprws
     ports:
       - "8080:8080"
-    restart: unless-stopped
+    restart: always
 
 
 # motioneye
@@ -71,10 +71,13 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./etc_motioneye:/etc/motioneye
       - ./var_lib_motioneye:/var/lib/motioneye
-    restart: unless-stopped
+    restart: always
 #    devices:
 #      - /dev/video1:/dev/video1
 
-volumes:
-  etc_motioneye:
-  var_lib_motioneye:
+#volumes:
+#  reverse-proxy:
+#  node-red-data:
+#  portainer-data:
+#  etc_motioneye:
+#  var_lib_motioneye:  
