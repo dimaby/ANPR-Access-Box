@@ -14,6 +14,8 @@ services:
       - ./reverse-proxy/headers.conf:/etc/nginx/headers.conf
     ports:
       - 80:80
+      - 81:81
+      - 82:82
     restart: always
 
 
