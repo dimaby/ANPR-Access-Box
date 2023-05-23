@@ -1,0 +1,1183 @@
+[
+    {
+        "id": "715cb54ef67d580c",
+        "type": "tab",
+        "label": "Unipark (local)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "api.platerecognizer.com",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "32a23a26358703ea",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "bgw.cyp.unipark.s-t.st",
+        "port": "1883",
+        "clientid": "OPIZ2",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "/opi/b0001/out/control",
+        "birthQos": "0",
+        "birthPayload": "start",
+        "birthMsg": {},
+        "closeTopic": "/opi/b0001/out/control",
+        "closeQos": "0",
+        "closePayload": "stop",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f3fd8768b87ca307",
+        "type": "opi_out",
+        "z": "715cb54ef67d580c",
+        "name": "PC8",
+        "set": true,
+        "level": 0,
+        "select": "other",
+        "pin": "72",
+        "enableLow": false,
+        "x": 430,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0c77c44ba57bc632",
+        "type": "inject",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "f3fd8768b87ca307",
+                "05ce3198b3ae4e19"
+            ]
+        ]
+    },
+    {
+        "id": "88e1deefa483ea78",
+        "type": "inject",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "f3fd8768b87ca307",
+                "05ce3198b3ae4e19"
+            ]
+        ]
+    },
+    {
+        "id": "023ad06cd6c14000",
+        "type": "opi_in",
+        "z": "715cb54ef67d580c",
+        "name": "PC6",
+        "opi": true,
+        "enableInterrupt": true,
+        "edge": "both",
+        "debounce": "50",
+        "select": "other",
+        "pin": "70",
+        "enableLow": true,
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "51593fe15c913c1e",
+                "6ce55c5966fa29ca"
+            ]
+        ]
+    },
+    {
+        "id": "51593fe15c913c1e",
+        "type": "debug",
+        "z": "715cb54ef67d580c",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "6ce55c5966fa29ca",
+        "type": "mqtt out",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "topic": "/opi/b0001/out/control/PC6",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "32a23a26358703ea",
+        "x": 500,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5681c75f5f6b2d5a",
+        "type": "mqtt in",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "topic": "/opi/b0001/in/control/PC8",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "32a23a26358703ea",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "f3fd8768b87ca307",
+                "51593fe15c913c1e"
+            ]
+        ]
+    },
+    {
+        "id": "b1a98a65fab56058",
+        "type": "http in",
+        "z": "715cb54ef67d580c",
+        "name": "Webhook Motioneye",
+        "url": "api/motionhook",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "a5ef8ea85dd85f4e"
+            ]
+        ]
+    },
+    {
+        "id": "6017c5bde29b2f07",
+        "type": "debug",
+        "z": "715cb54ef67d580c",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a3466f3dfd08bc7f",
+        "type": "inject",
+        "z": "715cb54ef67d580c",
+        "name": "BLR Car",
+        "props": [
+            {
+                "p": "url",
+                "v": "https://content.onliner.by/news/820x5616/ec6085425a72f1c374ceac2468c7f4e2.jpeg",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "5b4ef3f1bc34b103"
+            ]
+        ]
+    },
+    {
+        "id": "8fbab0842b37bead",
+        "type": "http request",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "b26e42c744b9d80d",
+                "050705429016dc5f"
+            ]
+        ]
+    },
+    {
+        "id": "3adc8de81e705184",
+        "type": "change",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "$replace(\t   req._parsedUrl.query,\t   \"/var/lib/motioneye/Camera2\",\t   \"http://motioneye:8765/picture/2/preview\"\t)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "req",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "res",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "6017c5bde29b2f07",
+                "8fbab0842b37bead"
+            ]
+        ]
+    },
+    {
+        "id": "b26e42c744b9d80d",
+        "type": "image",
+        "z": "715cb54ef67d580c",
+        "name": "Show analyzed image",
+        "width": "400",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1060,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "05ce3198b3ae4e19",
+        "type": "mqtt out",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "topic": "/opi/b0001/out/control/PC8",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "32a23a26358703ea",
+        "x": 1000,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "063bef5f1198a08c",
+        "type": "mqtt out",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "topic": "/opi/b0001/out/plate/",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "32a23a26358703ea",
+        "x": 820,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5b4ef3f1bc34b103",
+        "type": "http request",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 150,
+        "y": 700,
+        "wires": [
+            [
+                "050705429016dc5f",
+                "b26e42c744b9d80d",
+                "d3ae9b58e2674a82"
+            ]
+        ]
+    },
+    {
+        "id": "a5ef8ea85dd85f4e",
+        "type": "delay",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "3adc8de81e705184"
+            ]
+        ]
+    },
+    {
+        "id": "abc54e96bc9684a1",
+        "type": "image",
+        "z": "715cb54ef67d580c",
+        "name": "Barrier Indicator",
+        "width": "128",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1240,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7c101cc08300d812",
+        "type": "http request",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1010,
+        "y": 60,
+        "wires": [
+            [
+                "abc54e96bc9684a1"
+            ]
+        ]
+    },
+    {
+        "id": "4bef0d069eeeda42",
+        "type": "http request",
+        "z": "715cb54ef67d580c",
+        "name": "Local ANPR Service",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://oalprws:8080/v1/identify/plate",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 520,
+        "y": 660,
+        "wires": [
+            [
+                "207a5be8c94f0b77",
+                "063bef5f1198a08c",
+                "d2264a26a375e5e3"
+            ]
+        ]
+    },
+    {
+        "id": "d2264a26a375e5e3",
+        "type": "debug",
+        "z": "715cb54ef67d580c",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "050705429016dc5f",
+        "type": "function",
+        "z": "715cb54ef67d580c",
+        "name": "Body + Headers",
+        "func": "var fileStream = msg.payload;\nlet filename = 'camera1.jpg';\n\nmsg.payload = {\n    \"image\": {\n        \"value\": fileStream,\n        \"options\": {\n            \"filename\": filename\n        }\n    },\n};\nmsg.headers = {\n    'content-type': 'multipart/form-data'\n\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [
+                "4bef0d069eeeda42"
+            ]
+        ]
+    },
+    {
+        "id": "69600cfcf2a35d08",
+        "type": "opi_out",
+        "z": "715cb54ef67d580c",
+        "name": "PC5",
+        "set": true,
+        "level": 0,
+        "select": "other",
+        "pin": "69",
+        "enableLow": false,
+        "x": 430,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d5fed013245bbbd7",
+        "type": "inject",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "69600cfcf2a35d08",
+                "7884be4681744d42"
+            ]
+        ]
+    },
+    {
+        "id": "8566810226538724",
+        "type": "inject",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "69600cfcf2a35d08",
+                "7884be4681744d42"
+            ]
+        ]
+    },
+    {
+        "id": "207a5be8c94f0b77",
+        "type": "function",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "func": "var msgPC8 = { payload: 0 };\nvar msgPC5 = { payload: 0 };\nif (msg.payload.results.length > 0) {\n    for (let i = 0; i < msg.payload.results.length; i++) {\n        node.log(\"i= \" + i);\n        node.log(\"p= \" + msg.payload.results[i].plate);\n        switch (msg.payload.results[i].plate) {\n            case \"9168HK7\":\n                msgPC8.payload = 1\n                msg.url = \"https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/128x128/barrier_open.png\"\n                break;\n            case \"9109IA1\":\n                msg.url = \"https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/128x128/plain/barrier_open.png\"\n                msgPC5.payload = 1\n                break;\n            default:\n                msg.payload = \"Plate is not recognized\"\n                msg.url = \"https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/128x128/sign_stop.png\";\n        }\n    }\n}\nelse {\n    msg.payload = \"Plate is not recognized\"\n    msg.url = \"https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/128x128/sign_stop.png\";\n}\nreturn [msg, msgPC8, msgPC5]",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "7c101cc08300d812",
+                "bce882fd0871e4b7"
+            ],
+            [
+                "f3fd8768b87ca307",
+                "05ce3198b3ae4e19"
+            ],
+            [
+                "69600cfcf2a35d08",
+                "7884be4681744d42"
+            ]
+        ]
+    },
+    {
+        "id": "7884be4681744d42",
+        "type": "mqtt out",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "topic": "/opi/b0001/out/control/PC5",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "32a23a26358703ea",
+        "x": 1000,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "bce882fd0871e4b7",
+        "type": "debug",
+        "z": "715cb54ef67d580c",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4f845ec1fee0bb0a",
+        "type": "change",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "recognition",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 740,
+        "wires": [
+            [
+                "d2264a26a375e5e3"
+            ]
+        ]
+    },
+    {
+        "id": "d3ae9b58e2674a82",
+        "type": "plate-recognizer",
+        "z": "715cb54ef67d580c",
+        "name": "",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "recognition",
+        "outputFieldType": "msg",
+        "url": "https://api.platerecognizer.com/v1/plate-reader/",
+        "ignoreDuring": false,
+        "makeAndModel": false,
+        "statusText": "scores",
+        "cameraId": "test",
+        "separateMsg": false,
+        "regionFilter": false,
+        "regionList": "",
+        "regionListType": "json",
+        "x": 540,
+        "y": 740,
+        "wires": [
+            [
+                "4f845ec1fee0bb0a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fff72ad.6f8c7d8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "ee55dd94.02b2e"
+            ]
+        ]
+    },
+    {
+        "id": "28523886.f82428",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Normal recognitions",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "recognition",
+        "targetType": "msg",
+        "x": 840,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ee55dd94.02b2e",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://www.mercedes-benz.com/en/classic/history/h-number-plate-2020/_jcr_content/root/paragraph/paragraph-right/paragraphimage/image/MQ6-8-image-20191205151927/02-mercedes-benz-classic-h-number-plate-2020-2560x1440.jpeg",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 400,
+        "y": 140,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "10f189ae.db2d76",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "24464bb6.a07b64"
+            ]
+        ]
+    },
+    {
+        "id": "24464bb6.a07b64",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://image.freepik.com/free-photo/empty-parking-lot_1127-3298.jpg",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "5ee1acd5.4e0784",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "No cars",
+        "info": "",
+        "x": 190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "231d72b4.5233ae",
+        "type": "plate-recognizer",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "recognition",
+        "outputFieldType": "msg",
+        "url": "https://api.platerecognizer.com/v1/plate-reader/",
+        "ignoreDuring": false,
+        "makeAndModel": false,
+        "statusText": "scores",
+        "cameraId": "test",
+        "separateMsg": false,
+        "regionFilter": false,
+        "regionList": "",
+        "regionListType": "json",
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "28523886.f82428",
+                "37b1b695.62fa4a"
+            ],
+            [
+                "100a66ab.4607f9"
+            ]
+        ]
+    },
+    {
+        "id": "37b1b695.62fa4a",
+        "type": "image",
+        "z": "f6f2187d.f17ca8",
+        "name": "Show analyzed image",
+        "width": "400",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "outputs": 0,
+        "x": 1120,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "869cd924.d991d8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 640,
+        "wires": [
+            [
+                "f6b6ac8f.40806"
+            ]
+        ]
+    },
+    {
+        "id": "f6b6ac8f.40806",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 390,
+        "y": 640,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "6ac3b436.692fac",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 440,
+        "wires": [
+            [
+                "d2c4249d.901fd8"
+            ]
+        ]
+    },
+    {
+        "id": "d2c4249d.901fd8",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://images.aif.by/007/646/4e2a009954eedb847343a3e7adb1b86b.jpg",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "9a21e444.b22fc8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "8e81e18d.39882"
+            ]
+        ]
+    },
+    {
+        "id": "8e81e18d.39882",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": false,
+        "url": "http://www.piepenbroek.nl/foto2010/baltisch/IMG_1499.JPG",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "5899f099.1b645",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Two cars",
+        "info": "",
+        "x": 200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1db8bd98.23d672",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "One car",
+        "info": "",
+        "x": 190,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "100a66ab.4607f9",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Errors",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "recognition",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "cdfaa780.c2fa18",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "TEST",
+        "info": "",
+        "x": 190,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "c1d2f038.82ecc",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "BLR",
+        "info": "",
+        "x": 190,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8c4f0d01.426a2",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "7b580c6e.105764"
+            ]
+        ]
+    },
+    {
+        "id": "7b580c6e.105764",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://askautoexperts.com/wp-content/uploads/1931-Dodge-1024x768.jpg",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "231d72b4.5233ae"
+            ]
+        ]
+    },
+    {
+        "id": "da494e5a.e21ff",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Another car at angle",
+        "info": "",
+        "x": 230,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9b354f46.f081d",
+        "type": "plate-statistics",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "outputField": "payload",
+        "outputFieldType": "msg",
+        "url": "https://api.platerecognizer.com/v1/statistics/",
+        "x": 420,
+        "y": 800,
+        "wires": [
+            [
+                "54063a77.493ae4"
+            ]
+        ]
+    },
+    {
+        "id": "5653b69.13c4648",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Get statistics",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 800,
+        "wires": [
+            [
+                "9b354f46.f081d"
+            ]
+        ]
+    },
+    {
+        "id": "54063a77.493ae4",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Plate statistics",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 630,
+        "y": 800,
+        "wires": []
+    }
+]
