@@ -285,3 +285,5 @@ docker run -d -p 1880:1880 -v node_red_data:/data --name node_red --restart alwa
 
 
 НЕ СТАВИТЬ --- dataplicity (медленно работает! вместо этого NGROCK)
+
+
