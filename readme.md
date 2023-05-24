@@ -283,7 +283,7 @@ docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.
 НЕ СТАВИТЬ -- Red-Node (перенесено в docker-compose)
 docker run -d -p 1880:1880 -v node_red_data:/data --name node_red --restart always nodered/node-red
 
-
 НЕ СТАВИТЬ --- dataplicity (медленно работает! вместо этого NGROCK)
 
-
+Бекап
+https://www.cyberciti.biz/faq/how-to-create-disk-image-on-mac-os-x-with-dd-command/
