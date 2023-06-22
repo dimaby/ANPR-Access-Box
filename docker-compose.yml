@@ -97,7 +97,7 @@ services:
       - /proc:/dockerhost/proc:ro
       - /usr/lib:/dockerhost/usr/lib:ro
     devices:
-      - "/dev/vchiq:/dev/vchiq" 
+      # - "/dev/vchiq:/dev/vchiq" 
       - "/dev/vcsm:/dev/vcsm"  
     restart: unless-stopped
     ports:
