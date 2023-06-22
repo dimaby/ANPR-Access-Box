@@ -9,6 +9,7 @@ services:
         - node-red
         - portainer
         - motioneye
+        - rpi-monitor
     volumes:
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf
       - ./reverse-proxy/headers.conf:/etc/nginx/headers.conf
