@@ -99,6 +99,6 @@ services:
     # devices:
     #   - "/dev/vchiq:/dev/vchiq" 
     #   - "/dev/vcsm:/dev/vcsm"  
-    restart: unless-stopped
+    restart: always
     ports:
       - 8888:8888
